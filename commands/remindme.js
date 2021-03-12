@@ -1,6 +1,6 @@
 module.exports = {
     name: 'remindme',
-    description: 'Alter user with a message in a sepcified countdown',
+    description: 'Alert user with a message in a sepcified countdown',
     guildOnly: false,
     cooldown: 5,
     execute(client, message, args){
