@@ -13,7 +13,11 @@ module.exports = {
         var alertArg = "";
         args.forEach(element => {
             if(element != args[0]){
-                alertArg = alertArg + ' ' + element;
+                if(element == args[1]){
+                    alertArg = alertArg + element;
+                }else {
+                    alertArg = alertArg + ' ' + element;
+                }
             }
         });
 
