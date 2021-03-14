@@ -50,6 +50,9 @@ function checkKnownColors(color){
         case "purple":
             color = "#6600FF";
             break;
+        case "pink":
+            color = "#FFC0CB";
+            break;
         case "white":
             color = "#FFFFFF";
             break;
