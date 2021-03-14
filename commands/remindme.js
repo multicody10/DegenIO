@@ -5,7 +5,7 @@ module.exports = {
     cooldown: 5,
     execute(client, message, args){
         if(args.length < 2){
-            message.reply("Syntax is 'remindme [number][h/m/s] [message]'.");
+            message.reply("Syntax is:\n``/remindme {number}{h/m/s} {message}``");
             return;
         }
 
@@ -19,7 +19,7 @@ module.exports = {
 
         var milliseconds = timeToMilliseconds(timeArg);
         if(milliseconds == -1){
-            message.reply("Syntax is 'remindme [number][h/m/s] [message]'.");
+            message.reply("Syntax is:\n``/remindme {number}{h/m/s} {message}``");
             return;
         } else if(milliseconds > 604800000){
             message.reply("You cannot set a reminder that far into the future! Limit: 1 week.");
