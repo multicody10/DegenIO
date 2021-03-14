@@ -67,7 +67,7 @@ CLIENT.on('message', message => {
 
 //notify on member leave
 CLIENT.on('guildMemberRemove', member => {
-    member.guild.channels.get('598649816532385798').send('**' + member.user.username + '** has left the server.');
+    member.guild.channels.get(require ('./config.json').MAIN_CHAT_ID).send('**' + member.user.username + '** has left the server.');
 })
 
 CLIENT.login(require ('./config.json').BOT_TOKEN);
