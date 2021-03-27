@@ -35,8 +35,12 @@ CLIENT.on('message', message => {
     if (COMMAND.guildOnly && message.channel.type === 'dm') {
         message.reply('I can\'t execute that command inside DMs!');
         return;
+    } else if(COMMAND.dmOnly && message.channel.type !== 'dm'){
+        message.reply("Careful! That command can only be done inside DMs!");
+        message.delete();
+        return;
     }
-
+    
     //cooldown handler
     if(!COOLDOWNS.has(COMMAND.name)){
         COOLDOWNS.set(COMMAND.name, new DISCORD.Collection())
@@ -58,7 +62,7 @@ CLIENT.on('message', message => {
 
     //dynamic command handler
     try {
-        COMMAND.execute(CLIENT, message, ARGS);
+        COMMAND.execute(CLIENT, message, ARGS, DISCORD);
     } catch (error) {
         console.error(error);
         message.reply('There was an error trying to execute that command!');
@@ -67,7 +71,7 @@ CLIENT.on('message', message => {
 
 //notify on member leave
 CLIENT.on('guildMemberRemove', member => {
-    member.guild.channels.get(require ('./config.json').MAIN_CHAT_ID).send('**' + member.user.username + '** has left the server.');
+    member.guild.channels.cache.get('598649816532385798').send('**' + member.user.username + '** has left the server');
 })
 
 CLIENT.login(require ('./config.json').BOT_TOKEN);
