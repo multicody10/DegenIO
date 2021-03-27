@@ -2,8 +2,9 @@ module.exports = {
     name: 'color',
     description: 'Changes the user\'s role color',
     guildOnly: true,
+    dmOnly: false,
     cooldown: 5,
-    execute(client, message, args){
+    execute(client, message, args, discord){
         if(args.length != 1){
             message.reply("Syntax is:\n``/color {color name}``\n``/color {#RRGGBB}``.");
             return;

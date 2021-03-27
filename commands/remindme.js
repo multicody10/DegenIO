@@ -1,9 +1,10 @@
 module.exports = {
     name: 'remindme',
-    description: 'Alert user with a message in a sepcified countdown',
+    description: 'Alert user with a message in a specified countdown',
     guildOnly: false,
+    dmOnly: false,
     cooldown: 5,
-    execute(client, message, args){
+    execute(client, message, args, discord){
         if(args.length < 2){
             message.reply("Syntax is:\n``/remindme {number}{h/m/s} {message}``");
             return;
@@ -30,7 +31,7 @@ module.exports = {
             return;
         }
 
-        message.reply('Okay! I will remind you in ' + timeArg + '.');
+        message.reply(`Okay! I will remind you in ${timeArg}.`);
         var interval = setTimeout(function () {
             message.reply(alertArg)
             .catch(console.error);
