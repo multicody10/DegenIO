@@ -1,0 +1,24 @@
+{
+  "name": "degenio",
+  "version": "1.0.0",
+  "description": "Discord bot for The Degenerate Hideout",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/multicody10/DegenIO.git"
+  },
+  "author": "multicody10",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/multicody10/DegenIO/issues"
+  },
+  "homepage": "https://github.com/multicody10/DegenIO#readme",
+  "dependencies": {
+    "@discordjs/rest": "^0.4.1",
+    "discord-api-types": "^0.33.2",
+    "discord.js": "^13.7.0"
+  }
+}
