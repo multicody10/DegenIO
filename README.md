@@ -6,15 +6,25 @@ Uses Node.js and Discord.js
 
 # Start Locally
 Run these commands:
-```npm init```
 
-```npm install discord.js```
+```
+npm init
+```
 
-```npm install @discordjs/rest discord-api-types```
+```
+npm install discord.js
+```
 
-```npm deploy-commands.js``` (do this everytime you add a new command file)
+```
+npm install @discordjs/rest discord-api-types
+```
 
-Make a `config.json` somewhere in the root folder and inside it put
+Whenever you make a new command file run:
+```
+npm deploy-commands.js
+```
+
+Make a `config.json` somewhere in the root folder and inside it put:
 ```
 {
 	"clientId": "bot-client/app-id",
@@ -26,4 +36,6 @@ Replacing these with your own values.
 
 Finally
 
-```npm index.js```
+```
+npm index.js
+```
