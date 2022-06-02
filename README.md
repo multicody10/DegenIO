@@ -5,15 +5,25 @@ Uses Node.js and Discord.js
 
 
 # Start Locally
+Run these commands:
 ```npm init```
 
 ```npm install discord.js```
 
+```npm install @discordjs/rest discord-api-types```
+
+```npm deploy-commands.js``` (do this everytime you add a new command file)
+
 Make a `config.json` somewhere in the root folder and inside it put
 ```
 {
-	"clientId": "819550431063441428",
-	"guildId": "980715107195699251",
-	"token": "ODE5NTUwNDMxMDYzNDQxNDI4.GuBHEr.N3RAggiycuMnljfY1d1XwUXxHKGna4233ychSc"
+	"clientId": "bot-client/app-id",
+	"guildId": "server-id",
+	"token": "bot-token"
 }
 ```
+Replacing these with your own values.
+
+Finally
+
+```npm index.js```
