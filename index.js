@@ -1,77 +1,47 @@
-const FS = require('fs');
-const DISCORD = require('discord.js');
-const { timeStamp } = require('console');
+const fs = require('node:fs');
+const path = require('node:path');
+const { Client, Collection, Intents, MessageActionRow, MessageButton, MessageSelectMenu, Modal } = require('discord.js');
+const { token } = require('./config.json');
 
-const CLIENT = new DISCORD.Client();
+const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
-const PREFIX = '/';
-CLIENT.commands = new DISCORD.Collection();
+client.commands = new Collection();
+const commandsPath = path.join(__dirname, 'commands');
+const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
-const COMMANDFILES  = FS.readdirSync('./commands').filter(file => file.endsWith('.js'));
-const COOLDOWNS = new DISCORD.Collection();
-
-for(const file of COMMANDFILES){
-    const COMMAND = require(`./commands/${file}`);
-    CLIENT.commands.set(COMMAND.name, COMMAND);
+for (const file of commandFiles) {
+    const filePath = path.join(commandsPath, file);
+    const command = require(filePath);
+    client.commands.set(command.data.name, command);
 }
 
-CLIENT.on('ready', () => {
-    console.log('DegenIO ready!');
+client.once('ready', () => {
+    console.log('Ready!');
 });
 
-CLIENT.on('message', message => {
-    if(!message.content.startsWith(PREFIX) || message.author.bot) return;
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isCommand()) return;
 
-    const ARGS = message.content.slice(PREFIX.length).trim().split(/ +/);
-    const COMMANDNAME = ARGS.shift().toLowerCase();
+    const command = client.commands.get(interaction.commandName);
 
-    const COMMAND = CLIENT.commands.get(COMMANDNAME)
-		|| CLIENT.commands.find(cmd => cmd.aliases && cmd.aliases.includes(COMMANDNAME));
+    if (!command) return;
 
-    if(!COMMAND) return;
-
-
-    //DM handler
-    if (COMMAND.guildOnly && message.channel.type === 'dm') {
-        message.reply('I can\'t execute that command inside DMs!');
-        return;
-    } else if(COMMAND.dmOnly && message.channel.type !== 'dm'){
-        message.reply("Careful! That command can only be done inside DMs!");
-        message.delete();
-        return;
-    }
-    
-    //cooldown handler
-    if(!COOLDOWNS.has(COMMAND.name)){
-        COOLDOWNS.set(COMMAND.name, new DISCORD.Collection())
-    }
-    const NOW = Date.now();
-    const TIMESTAMPS = COOLDOWNS.get(COMMAND.name);
-    const COOLDOWNAMOUNT = (COMMAND.cooldown || 3) * 1000;
-
-    if(TIMESTAMPS.has(message.author.id)){
-        const EXPIRATIONTIME = TIMESTAMPS.get(message.author.id) + COOLDOWNAMOUNT;
-
-        if(NOW < EXPIRATIONTIME){
-            const TIMELEFT = (EXPIRATIONTIME - NOW) / 1000;
-            return message.reply(`Slow down! Please wait ${TIMELEFT.toFixed(1)} more second(s)!`);
-        }
-    }
-    TIMESTAMPS.set(message.author.id, NOW);
-    setTimeout(() => TIMESTAMPS.delete(message.author.id), COOLDOWNAMOUNT);
-
-    //dynamic command handler
     try {
-        COMMAND.execute(CLIENT, message, ARGS, DISCORD);
+        await command.execute(interaction);
     } catch (error) {
         console.error(error);
-        message.reply('There was an error trying to execute that command!');
+        await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
     }
 });
 
-//notify on member leave
-CLIENT.on('guildMemberRemove', member => {
-    member.guild.channels.cache.get('598649816532385798').send('**' + member.user.username + '** has left the server');
-})
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isButton()) return;
 
-CLIENT.login(require ('./config.json').BOT_TOKEN);
+    if (interaction.customId === 'button1') {
+        var redRole = interaction.member.guild.roles.cache.find(role => role.name === "Red");
+        interaction.member.roles.add(redRole);
+        await interaction.reply({ content: 'You now have the red role!', ephemeral: true });
+    }
+});
+
+client.login(token);
