@@ -8,10 +8,6 @@ Uses Node.js and Discord.js
 Run these commands:
 
 ```
-npm init
-```
-
-```
 npm install discord.js
 ```
 
