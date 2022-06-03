@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, Intents, MessageActionRow, MessageButton, MessageEmbed, TextInputComponent, Modal } = require('discord.js');
+const { Client, Collection, Intents, MessageActionRow, TextInputComponent, MessageEmbed, Modal } = require('discord.js');
 const { token } = require('./config.json');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -37,7 +37,6 @@ client.on('interactionCreate', async interaction => {
 client.on('interactionCreate', async interaction => {
     if (!interaction.isButton()) return;
 
-
     if (interaction.customId === 'open-ticket') {
         // Create the modal
         const modal = new Modal()
@@ -71,12 +70,22 @@ client.on('interactionCreate', async interaction => {
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isModalSubmit()) return;
+
     const ticketSubject = interaction.fields.getTextInputValue('ticketNameInput');
     const ticketMessage = interaction.fields.getTextInputValue('ticketMessageInput');
-    console.log({ ticketSubject, ticketMessage });
-    let channel = interaction.guild.channels.create(ticketSubject, { type: 'GUILD_TEXT' });
+
+    let channel = interaction.guild.channels.create("ticket-" + (Math.random() * 50), { type: 'GUILD_TEXT' });
     (await channel).setParent('982042135253618738');
-    await interaction.reply({ content: 'Your ticket has been submitted!', ephemeral: true });
+
+    const embed = new MessageEmbed()
+        .setColor('#1ec45b')
+        .setTitle(ticketSubject)
+        .setURL('')
+        .setDescription(ticketMessage);
+
+    let userID = '<@' + interaction.user.id + '> Here is your ticket!'
+    await interaction.guild.channels.cache.get((await channel).id).send({ content: userID, embeds: [embed] });
+    interaction.reply({ content: 'Your ticket has been created!', ephemeral: true });
 });
 
 client.login(token);
