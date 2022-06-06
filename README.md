@@ -21,7 +21,7 @@ npm install @discordjs/rest discord-api-types
 
 Whenever you make a new command file run:
 ```
-npm deploy-commands.js
+node deploy-commands.js
 ```
 
 Make a `config.json` somewhere in the root folder and inside it put:
@@ -37,5 +37,5 @@ Replacing these with your own values.
 Finally
 
 ```
-npm index.js
+node index.js
 ```

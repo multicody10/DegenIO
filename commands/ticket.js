@@ -1,26 +1,30 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
+const { Permissions, MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('ticket')
 		.setDescription('Makes a ticket!'),
 	async execute(interaction) {
-		const buttonrow = new MessageActionRow()
-			.addComponents(
-				new MessageButton()
-					.setCustomId('open-ticket')
-					.setLabel('Open Ticket')
-					.setStyle('SUCCESS'),
-			);
+		const cmdIssuer = interaction.guild.members.cache.get(interaction.user.id);
+		if (cmdIssuer.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
+			const ticketPanel = new MessageActionRow()
+				.addComponents(
+					new MessageButton()
+						.setCustomId('open-ticket')
+						.setLabel('Open Ticket')
+						.setStyle('SUCCESS')
+						.setEmoji('🎫'),
+				);
 
-		const embed = new MessageEmbed()
-			.setColor('#0099ff')
-			.setTitle('Ticket')
-			.setURL('')
-			.setDescription('Click the button to open a ticket!');
+			const ticketEmbed = new MessageEmbed()
+				.setColor('#5973af')
+				.setTitle('Ticket')
+				.setURL('')
+				.setDescription('Click the button to open a ticket!');
 
-		await interaction.guild.channels.cache.get('980721430578757632').send({ content: ' ', embeds: [embed], components: [buttonrow] });
-		interaction.reply({ content: 'Your ticket has been opened!', ephemeral: true });
+			await interaction.guild.channels.cache.get('980721430578757632').send({ content: ' ', embeds: [ticketEmbed], components: [ticketPanel] });
+			interaction.reply({ content: 'Your ticket menu has been created!', ephemeral: true });
+		}
 	},
 };
