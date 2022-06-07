@@ -20,5 +20,11 @@
     "@discordjs/rest": "^0.4.1",
     "discord-api-types": "^0.33.2",
     "discord.js": "^13.7.0"
+  },
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "production": "NODE_ENV=production&&npm start",
+    "development": "set NODE_ENV=development&&npm start"
   }
 }
