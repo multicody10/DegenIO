@@ -1,8 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Permissions, MessageActionRow, MessageButton, MessageEmbed, Channel } = require('discord.js');
 
-client.db = require("quick.db");
-
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('poll')

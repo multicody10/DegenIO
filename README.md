@@ -33,5 +33,5 @@ Replacing these with your own values.
 Finally
 
 ```
-npm index.js
+node index.js
 ```

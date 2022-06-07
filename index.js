@@ -11,8 +11,6 @@ const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('
 const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
-client.db = require("quick.db");
-
 for (const file of eventFiles) {
     const filePath = path.join(eventsPath, file);
     const event = require(filePath);
@@ -31,7 +29,6 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
     console.log('Ready!');
-    if ([null, undefined].includes(client.db.get(`polls`))) client.db.set(`polls`, {});
 });
 
 client.on('interactionCreate', async interaction => {
