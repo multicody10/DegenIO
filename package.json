@@ -3,12 +3,6 @@
   "version": "1.0.0",
   "description": "Discord bot for The Degenerate Hideout",
   "main": "index.js",
-  "scripts": {
-    "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "production": "NODE_ENV=production&&npm start",
-    "development": "set NODE_ENV=development&&npm start"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/multicody10/DegenIO.git"
