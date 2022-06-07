@@ -22,5 +22,9 @@
   "engines": {
     "node": "16.x",
     "npm": "7.x"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   }
 }
