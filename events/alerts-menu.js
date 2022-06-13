@@ -4,6 +4,7 @@ const alerts = new Map();
 alerts.set('Free Stuff Alert', '889041410953723945');
 alerts.set('VC', '889042092909793280');
 alerts.set('Movie', '889042145061777418');
+const alertsValues = [...alerts.values];
 
 
 module.exports = {
@@ -32,7 +33,7 @@ module.exports = {
             }
 
             // If the button is contained in alerts
-            if (alerts.has(interaction.customId)) {
+            if (alertsValues.includes(interaction.customId)) {
                 const role = interaction.guild.roles.cache.find(r => r.id == interaction.customId)
                 const member = interaction.guild.members.cache.get(interaction.user.id);
 
