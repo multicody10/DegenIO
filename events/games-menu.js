@@ -72,7 +72,7 @@ module.exports = {
                     .setTitle('Choose Games')
                     .setURL('')
                     .setDescription('Click the buttons below to toggle game notifications.');
-                interaction.reply({ embeds: [gamePickerEmbed], components: [gamePickerButtons], ephemeral: true });
+                interaction.reply({ embeds: [gamePickerEmbed], components: [gamePickerButtons, gamePickerButtons2], ephemeral: true });
             }
 
             // If the button is contained in games
