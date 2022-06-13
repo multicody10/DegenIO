@@ -34,22 +34,22 @@ module.exports = {
 
             // If the button is contained in alerts
             if (alertsValues.includes(interaction.customId)) {
-                const role = interaction.guild.roles.cache.find(r => r.id == interaction.customId)
+                const alertRole = interaction.guild.roles.cache.find(r => r.id == interaction.customId)
                 const member = interaction.guild.members.cache.get(interaction.user.id);
 
-                if (member.roles.cache.some(role => role.id === role)) {
-                    member.roles.remove(role);
+                if (!member.roles.find(role => role === alertRole)) {
+                    member.roles.add(alertRole);
                     const alertChoiceEmbed = new MessageEmbed()
-                        .setColor('#ff0000')
-                        .setTitle('You are no longer subscribed to ' + role.name)
+                        .setColor('#00ff00')
+                        .setTitle('You are now subscribed to ' + alertRole.name)
                         .setURL('')
                         .setDescription('');
                     interaction.reply({ embeds: [alertChoiceEmbed], ephemeral: true });
                 } else {
-                    member.roles.add(role);
+                    member.roles.remove(alertRole);
                     const alertChoiceEmbed = new MessageEmbed()
-                        .setColor('#00ff00')
-                        .setTitle('You are now subscribed to ' + role.name)
+                        .setColor('#ff0000')
+                        .setTitle('You are no longer subscribed to ' + alertRole.name)
                         .setURL('')
                         .setDescription('');
                     interaction.reply({ embeds: [alertChoiceEmbed], ephemeral: true });
