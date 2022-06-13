@@ -22,7 +22,7 @@ module.exports = {
                 // Build the game selection menu
                 const gamePickerButtons = new MessageActionRow();
                 const gamePickerButtons2 = new MessageActionRow();
-                int i = 0;
+                var i = 0;
                 games.forEach((value, key) => {
                     const gameButton = new MessageButton();
                     gameButton.setLabel(key);
