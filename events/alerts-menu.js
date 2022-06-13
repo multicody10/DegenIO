@@ -37,7 +37,7 @@ module.exports = {
                 const alertRole = interaction.guild.roles.cache.find(r => r.id == interaction.customId)
                 const member = interaction.guild.members.cache.get(interaction.user.id);
 
-                if (!member.roles.find(role => role === alertRole)) {
+                if (!member.roles.cache.some(role => role === alertRole)) {
                     member.roles.add(alertRole);
                     const alertChoiceEmbed = new MessageEmbed()
                         .setColor('#00ff00')
