@@ -13,16 +13,32 @@ module.exports = {
         if (interaction.isButton()) {
             // If the button is the alert menu button
             if (interaction.customId === 'alerts-button') {
-                // Build the alert menu
+                const member = interaction.guild.members.cache.get(interaction.user.id);
+                // Build the alert selection menu
                 const alertPickerButtons = new MessageActionRow();
                 alerts.forEach((value, key) => {
-                    alertPickerButtons.addComponents(
-                        new MessageButton()
-                            .setCustomId(value)
-                            .setLabel(key)
-                            .setStyle('SECONDARY')
-                            .setEmoji('🔔'),
-                    );
+                    const alertButton = new MessageButton();
+                    alertButton.setLabel(key);
+                    alertButton.setCustomId(value);
+                    if (member.roles.cache.some(role => role.id === value)) {
+                        alertButton.setStyle('SUCCESS');
+                    } else {
+                        alertButton.setStyle('SECONDARY');
+                    }
+                    switch (key) {
+                        case 'Free Stuff Alert':
+                            alertButton.setEmoji('🆓');
+                            break;
+                        case 'VC':
+                            alertButton.setEmoji('🎙');
+                            break;
+                        case 'Movie':
+                            alertButton.setEmoji('🎬');
+                            break;
+                        default:
+                            alertButton.setEmoji('🔔');
+                    }
+                    alertPickerButtons.addComponents(alertButton);
                 });
                 const alertPickerEmbed = new MessageEmbed()
                     .setColor('#663399')
