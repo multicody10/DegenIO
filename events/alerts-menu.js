@@ -37,20 +37,23 @@ module.exports = {
                 const role = interaction.guild.roles.cache.find(r => r.id == interaction.customId)
                 const member = interaction.guild.members.cache.get(interaction.user.id);
 
-                const alertChoiceEmbed = new MessageEmbed()
-                    .setURL('')
-                    .setDescription('');
-
                 if (!member.roles.cache.some(role => role.id === role)) {
                     member.roles.add(role);
-                    alertChoiceEmbed.setColor('#00ff00');
-                    alertChoiceEmbed.setTitle('You are now subscribed to ' + role.name);
+                    const alertChoiceEmbed = new MessageEmbed()
+                        .setColor('#00ff00')
+                        .setTitle('You are now subscribed to ' + role.name)
+                        .setURL('')
+                        .setDescription('');
+                    interaction.reply({ embeds: [alertChoiceEmbed], ephemeral: true });
                 } else {
                     member.roles.remove(role);
-                    alertChoiceEmbed.setColor('#ff0000');
-                    alertChoiceEmbed.setTitle('You are no longer subscribed to ' + role.name);
+                    const alertChoiceEmbed = new MessageEmbed()
+                        .setColor('#ff0000')
+                        .setTitle('You are no longer subscribed to ' + role.name)
+                        .setURL('')
+                        .setDescription('');
+                    interaction.reply({ embeds: [alertChoiceEmbed], ephemeral: true });
                 }
-                interaction.reply({ embeds: [alertChoiceEmbed], ephemeral: true });
             }
         }
     }
