@@ -4,7 +4,7 @@ const alerts = new Map();
 alerts.set('Free Stuff Alert', '889041410953723945');
 alerts.set('VC', '889042092909793280');
 alerts.set('Movie', '889042145061777418');
-const alertsValues = [...alerts.values];
+const alertsValues = [...alerts.values()];
 
 
 module.exports = {
