@@ -32,28 +32,28 @@ module.exports = {
                     }
                     switch (key) {
                         case 'Counter Strike: Global Offensive':
-                            gameButton.setEmoji('csgo');
+                            gameButton.setEmoji(':csgo:');
                             break;
                         case 'Rocket League':
-                            gameButton.setEmoji('rocketleague');
+                            gameButton.setEmoji(':rocketleagu:');
                             break;
                         case 'Minecraft':
-                            gameButton.setEmoji('minecraft');
+                            gameButton.setEmoji(':minecraft:');
                             break;
                         case 'Vintage Story':
-                            gameButton.setEmoji('vintagestory');
+                            gameButton.setEmoji(':vintagestory:');
                             break;
                         case "No Man's Sky":
-                            gameButton.setEmoji('nomanssky');
+                            gameButton.setEmoji(':nomanssky:');
                             break;
                         case 'Jackbox':
-                            gameButton.setEmoji('jackboxLogo');
+                            gameButton.setEmoji(':jackboxLogo:');
                             break;
                         case 'Stellaris':
-                            gameButton.setEmoji('stellarisLogo');
+                            gameButton.setEmoji(':stellarisLogo:');
                             break;
                         case 'Dead by Daylight':
-                            gameButton.setEmoji('dbd');
+                            gameButton.setEmoji(':dbd:');
                             break;
                         default:
                             gameButton.setEmoji('🎮');
