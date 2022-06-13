@@ -21,6 +21,8 @@ module.exports = {
                 const member = interaction.guild.members.cache.get(interaction.user.id);
                 // Build the game selection menu
                 const gamePickerButtons = new MessageActionRow();
+                const gamePickerButtons2 = new MessageActionRow();
+                int i = 0;
                 games.forEach((value, key) => {
                     const gameButton = new MessageButton();
                     gameButton.setLabel(key);
@@ -58,7 +60,12 @@ module.exports = {
                         default:
                             gameButton.setEmoji('🎮');
                     }
-                    gamePickerButtons.addComponents(gameButton);
+                    i++;
+                    if (i <= 5) {
+                        gamePickerButtons.addComponents(gameButton);
+                    } else {
+                        gamePickerButtons2.addComponents(gameButton);
+                    }
                 });
                 const gamePickerEmbed = new MessageEmbed()
                     .setColor('#663399')
