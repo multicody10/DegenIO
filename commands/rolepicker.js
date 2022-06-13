@@ -24,8 +24,7 @@ module.exports = {
 						.setCustomId('games-button')
 						.setLabel('Games')
 						.setStyle('SECONDARY')
-						.setEmoji('🎮')
-						.setDisabled(true),
+						.setEmoji('🎮'),
 				);
 
 			const rolePickerMenu2 = new MessageActionRow()
