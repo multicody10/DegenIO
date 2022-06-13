@@ -32,28 +32,28 @@ module.exports = {
                     }
                     switch (key) {
                         case 'Counter Strike: Global Offensive':
-                            gameButton.setEmoji(':csgo:');
+                            gameButton.setEmoji('889054613578338345');
                             break;
                         case 'Rocket League':
-                            gameButton.setEmoji(':rocketleagu:');
+                            gameButton.setEmoji('889054628220657694');
                             break;
                         case 'Minecraft':
-                            gameButton.setEmoji(':minecraft:');
+                            gameButton.setEmoji('889054670838968380');
                             break;
                         case 'Vintage Story':
-                            gameButton.setEmoji(':vintagestory:');
+                            gameButton.setEmoji('889054706423447562');
                             break;
                         case "No Man's Sky":
-                            gameButton.setEmoji(':nomanssky:');
+                            gameButton.setEmoji('889054732939825184');
                             break;
                         case 'Jackbox':
-                            gameButton.setEmoji(':jackboxLogo:');
+                            gameButton.setEmoji('899188066110038058');
                             break;
                         case 'Stellaris':
-                            gameButton.setEmoji(':stellarisLogo:');
+                            gameButton.setEmoji('900590499369455616');
                             break;
                         case 'Dead by Daylight':
-                            gameButton.setEmoji(':dbd:');
+                            gameButton.setEmoji('964277566510858260');
                             break;
                         default:
                             gameButton.setEmoji('🎮');
