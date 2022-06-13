@@ -19,8 +19,7 @@ module.exports = {
 						.setCustomId('alerts-button')
 						.setLabel('Alerts')
 						.setStyle('SECONDARY')
-						.setEmoji('🔔')
-						.setDisabled(true),
+						.setEmoji('🔔'),
 					new MessageButton()
 						.setCustomId('games-button')
 						.setLabel('Games')

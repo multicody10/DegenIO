@@ -39,6 +39,7 @@ module.exports = {
     name: 'interactionCreate',
     async execute(interaction) {
         if (interaction.isButton()) {
+            // Name Color Button
             if (interaction.customId === 'color-button') {
                 var colorEmbedString = "\n";
                 colors.forEach((value, key) => {
@@ -83,6 +84,7 @@ module.exports = {
         }
 
         if (interaction.isSelectMenu()) {
+            // Name Color SelectMenu
             if (interaction.customId === "selectColorDropdown") {
                 const role = interaction.guild.roles.cache.find(r => r.id == interaction.values[0])
                 const member = interaction.guild.members.cache.get(interaction.user.id);
@@ -99,7 +101,6 @@ module.exports = {
                     .setDescription('');
 
                 await interaction.reply({ embeds: [colorPickerPickedEmbed], ephemeral: true });
-
             }
         }
     }
