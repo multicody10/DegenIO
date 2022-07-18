@@ -33,14 +33,12 @@ module.exports = {
 						.setCustomId('shows-button')
 						.setLabel('Shows')
 						.setStyle('SECONDARY')
-						.setEmoji('📺')
-						.setDisabled(true),
+						.setEmoji('📺'),
 					new MessageButton()
 						.setCustomId('drugs-button')
 						.setLabel('Drugs')
 						.setStyle('SECONDARY')
-						.setEmoji('💊')
-						.setDisabled(true),
+						.setEmoji('💊'),
 				);
 
 			const rolePickerEmbed = new MessageEmbed()
