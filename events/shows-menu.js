@@ -17,8 +17,6 @@ module.exports = {
                 const member = interaction.guild.members.cache.get(interaction.user.id);
                 // Build the show selection menu
                 const showPickerButtons = new MessageActionRow();
-                const showPickerButtons2 = new MessageActionRow();
-                var i = 0;
                 shows.forEach((value, key) => {
                     const showButton = new MessageButton();
                     showButton.setLabel(key);
@@ -44,19 +42,14 @@ module.exports = {
                         default:
                             showButton.setEmoji('📺');
                     }
-                    i++;
-                    if (i <= 5) {
-                        showPickerButtons.addComponents(showButton);
-                    } else {
-                        showPickerButtons2.addComponents(showButton);
-                    }
+                    showPickerButtons.addComponents(showButton);
                 });
                 const showPickerEmbed = new MessageEmbed()
                     .setColor('#663399')
                     .setTitle('Choose Shows')
                     .setURL('')
                     .setDescription('Click the buttons below to toggle show notifications.');
-                interaction.reply({ embeds: [showPickerEmbed], components: [showPickerButtons, showPickerButtons2], ephemeral: true });
+                interaction.reply({ embeds: [showPickerEmbed], components: [showPickerButtons], ephemeral: true });
             }
 
             // If the button is contained in shows
