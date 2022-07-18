@@ -35,10 +35,10 @@ module.exports = {
                         case 'DC':
                             showButton.setEmoji('935876264152154202');
                             break;
-                        case 'Star Wars':
+                        case "Star Wars":
                             showButton.setEmoji('935876289427042335');
                             break;
-                        case 'The Walking Dead':
+                        case "The Walking Dead":
                             showButton.setEmoji('🧟');
                             break;
                         default:
